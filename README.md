@@ -7,9 +7,9 @@
 
 ## Example Code
 
-'''typescript
-
-'''
+```typescript
+Hello World
+```
 
 ## Contributors
 
