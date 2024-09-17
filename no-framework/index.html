@@ -7,9 +7,37 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/fontawesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+    <style>
+      .bg-white {
+          background-color: whitesmoke;
+      }
+      .shelf {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .shelf li {
+        background-color: white;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        width: 150px;
+        cursor: pointer;
+      } 
+      .shelf h3 {
+        margin: 0;
+        font-size: 1.25rem;
+        font-weight: bold;
+      }
+      .shelf .price {
+        text-align: right;
+        font-size: 1rem;
+        color: #666;
+      }
+  </style>
 </head>
 <body>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
           <a class="navbar-item" href="https://bulma.io">
             <svg width="640" height="160" viewBox="0 0 640 160" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -80,7 +108,7 @@
 
     <div class="container">
         <h1 class="title">
-            <i class="fa-solid fa-person-falling-burst"></i>
+            <i class="fas fa-drumstick-bite"></i>
             My Bulma Example
             <i class="fas fa-phone-slash"></i>
         </h1>
@@ -97,8 +125,60 @@
         <div class="message is-success">
            <div class="message-body">This is a success alert.</div> 
         </div>
+        <div class="section bg-white" id="app">
+            <div class="columns">
+                <columns is-three-quarters>
+                {{ message }}
+                <ul class="shelf">
+                    <li>
+                        <h3>{{ product.name }}</h3>
+                        <p>{{ product.price }}</p>
+                    </li>
+                </ul>
+                </columns>
+                <columns></columns>
+            </div>
+        </div>
     </div>
     </div>
 </div>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+  const { createApp, ref } = Vue
+
+  createApp({
+    setup() {
+      const message = ref('Hello vue!')
+
+      const products = ref([
+        { name: 'Pizza', price: 5.50 },
+        { name: 'Burger', price: 6.99 },
+        { name: 'Coke', price: 2.15 },
+        { name: 'Fries', price: 3.25 },
+        { name: 'Salad', price: 4.75 },
+        { name: 'Ice Cream', price: 2.99 },
+        { name: 'Coffee', price: 1.99 },
+        { name: 'Tea', price: 1.50 },
+        { name: 'Water', price: 1.00 },
+        { name: 'Juice', price: 2.25 }
+      ])
+
+      const cart = ref([])
+
+      function addToCart(product) {
+        const item = cart.value.find(item => item.product.name === product.name)
+        if(item) {
+          item.quantity++
+        } else {
+          cart.value.push({ product, quantity: 1 })
+        }
+      }
+
+      return {
+        message, products, cart, addToCart
+      }
+    }
+  }).mount('#app')
+</script>
 </body>
 </html>
