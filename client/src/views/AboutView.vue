@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>Something sounds like a smelly red</h1>
+    <h1>This is a Demo client</h1>
   </div>
 </template>
 
