@@ -1,0 +1,17 @@
+{
+  "name": "2024Fall",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "node server/index.mjs",
+    "dev": "nodemon server/index.mjs"
+  },
+  "dependencies": {
+    "2024Fall": "file:",
+    "dayjs": "^1.10.4",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "3.1.7"
+  }
+}
